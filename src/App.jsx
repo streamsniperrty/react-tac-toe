@@ -1,26 +1,37 @@
-import { useState } from "react";
-import CodeNationLogo from "./CodeNationLogo";
-import ReactLogo from "./ReactLogo";
+import {useState} from 'react';
+import Square from "./Square";
+import BoardRow from "./BoardRow";
 import "./App.css";
 import "./styles.css";
+import react from "@vitejs/plugin-react-swc";
 
 export default function App() {
-  const [count, setCount] = useState(0);
+  const [value, setValue] = useState(null);
 
+  const changeValue = () => {
+    if (value === 'X') {
+      setValue("O");
+    } else {
+      setValue("X");
+    }
+  }
   return (
-    <>
-      <h2>
-        <CodeNationLogo />
-        Go to the{" "}
-        <a href="https://react.dev/learn/tutorial-tic-tac-toe" target="_blank">
-          tutorial
-        </a>
-        <ReactLogo />
-      </h2>
-      <ul>
-        <li>We don't need to do the setup steps</li>
-        <li>You're welcome</li>
-      </ul>
-    </>
+    <div onClick={changeValue}>
+      <BoardRow>
+        <Square display={value}/>
+        <Square display={value}/>
+        <Square display={value}/>
+      </BoardRow>
+      <BoardRow>
+        <Square display={value}/>
+        <Square display={value}/>
+        <Square display={value}/>
+      </BoardRow>
+      <BoardRow>
+        <Square display={value}/>
+        <Square display={value}/>
+        <Square display={value}/>
+      </BoardRow>
+    </div>
   );
 }
